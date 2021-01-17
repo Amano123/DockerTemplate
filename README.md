@@ -64,6 +64,8 @@ docker exec -it `ubuntu` bash
 
 ![sample](https://user-images.githubusercontent.com/39152214/104838502-9a624100-58fe-11eb-84c2-1e78e644be2a.gif)
 
+`USER_ID`, `GROUP ID`が一致していれば、`USER NAME`が異なっても動作することが確認できた。
+
 ## 環境変数について
 docker build時に`USER NAME`, `USER ID`, `GROUP ID`が必要になるが、Dockerfileでの環境変数を指定には外部ファイル(.env)では不可。
 
