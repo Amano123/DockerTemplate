@@ -17,10 +17,23 @@
     └── Dockerfile
 ```
 
-.emvにホストのUSER　IDを記述している
+.emvにホストの`USER_ID`、`GROUP ID`を記述している
 
-このファイルをホストのUSER ID, GROUP IDに変更することでOwner問題を解決することができる。
+
+#### `user idを確認するコマンド`
 ```
+id -u
+```
+
+#### `group idを確認するコマンド` 
+```
+id -g
+```
+上記のコマンドで確認したIDを`USER_ID`、`GROUP ID`に対応するように書き換える。  
+USER NAMEはお好みで指定して。
+
+`.emvの中身`
+```.emv
 # User name
 USER_NAME="yo"
 
@@ -30,6 +43,28 @@ USER_ID=1000
 # GROUP ID
 GROUP_ID=1000
 ```
+
+次に、docker-composeでbuildする。
+```
+docker-compose build
+```
+
+Containerを立ち上げる
+```
+docker-compose up -d
+```
+
+中に入る
+今回はContainer名を`ubuntu`にしているので
+```
+docker exec -it `ubuntu` bash
+```
+
+ホストとコンテナの`ID`を統一し、`USER NAME`を異なる場合での検証
+
+![sample](https://user-images.githubusercontent.com/39152214/104838502-9a624100-58fe-11eb-84c2-1e78e644be2a.gif)
+
+## 環境変数について
 docker build時に`USER NAME`, `USER ID`, `GROUP ID`が必要になるが、Dockerfileでの環境変数を指定には外部ファイル(.env)では不可。
 
 dockerfileに直接記述するのも不格好なのでDocker-compose経由で`USER NAME`, `USER ID`, `GROUP ID`を渡すことにした。
