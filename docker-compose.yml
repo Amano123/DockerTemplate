@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  ubuntu:
+      build:
+        context: ./ubuntu
+        dockerfile: Dockerfile
+        args: 
+          USER_NAME: $USER_NAME
+          USER_ID: $USER_ID
+          GROUP_ID: $GROUP_ID
+      container_name: ubuntu
+      volumes:
+          - ./data_ubuntu:/home/$USER_NAME/data_ubuntu
+      tty: true
