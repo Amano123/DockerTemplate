@@ -38,10 +38,14 @@ USER NAMEはお好みで指定して。
 USER_NAME="yo"
 
 # User ID
-USER_ID=1000
+# example : USER_ID=999
+USER_ID=ここを書き換える
+
 
 # GROUP ID
-GROUP_ID=1000
+# example : USER_ID=999
+GROUP_ID=ここを書き換える
+
 ```
 
 次に、docker-composeでbuildする。
