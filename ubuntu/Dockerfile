@@ -48,6 +48,7 @@ RUN echo "Starting with UID : ${USER_ID}, GID: ${GROUP_ID}" \
 &&  echo "${USER_NAME}:${USER_NAME}" | chpasswd \
 &&  echo "%${USER_NAME}    ALL=(ALL)   NOPASSWD:    ALL" >> /etc/sudoers.d/${USER_NAME} \
 &&  chmod 0440 /etc/sudoers.d/${USER_NAME} \
+&&  usermod -u ${USER_ID} ${USER_NAME} \
 &&  groupmod -g ${GROUP_ID} ${USER_NAME} 
 
 # user change : root -> make user 
