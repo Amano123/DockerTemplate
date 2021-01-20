@@ -43,7 +43,8 @@ ENV LC_CTYPE ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP.utf8
 
 # make user
-RUN echo "Starting with UID : ${USER_ID}, GID: ${GROUP_ID}" \
+RUN set -x \
+&&  echo "Starting with UID : ${USER_ID}, GID: ${GROUP_ID}" \
 &&  adduser --disabled-password --gecos "" "${USER_NAME}" \
 &&  echo "${USER_NAME}:${USER_NAME}" | chpasswd \
 &&  echo "%${USER_NAME}    ALL=(ALL)   NOPASSWD:    ALL" >> /etc/sudoers.d/${USER_NAME} \
